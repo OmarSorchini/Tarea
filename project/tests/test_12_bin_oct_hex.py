@@ -1,3 +1,4 @@
+# Author: A01749389 Omar Rodrigo Sorchini Puente
 # File: tests/test_12_bin_oct_hex.py
 
 from unittest import TestCase

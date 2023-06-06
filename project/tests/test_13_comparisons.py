@@ -1,3 +1,4 @@
+# Author: A01749389 Omar Rodrigo Sorchini Puente
 # File: tests/test_13_comparisons.py
 
 from unittest import TestCase

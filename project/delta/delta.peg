@@ -1,3 +1,5 @@
+//Author: A01749389 Omar Rodrigo Sorchini Puente
+
 comments = r'[/][/].*|[/][*](.|\n)*?[*][/]'
 identifier = r'[a-zA-Z]\w*'
 program = statement* expression EOF
@@ -8,11 +10,10 @@ assignment = lhs_variable '=' expression ';'
 lhs_variable = identifier
 if = 'if' expression block ('else if' expression block)* ('else' block)?
 block = '{' statement* '}'
-
-do = 'do' block 'while' expression
-
+do = 'do' block 'while' expression ';'
 while = 'while' expression (block)?
-expression = comparison ('&&' comparison)*
+expression = and ('||' and)*
+and = comparison ('&&' comparison)*
 comparison = additive (('==' / '!=' / '>=' / '>' / '<=' / '<') additive)*
 additive = multiplicative (('+' / '-') multiplicative)*
 multiplicative = unary (('*' / '/' / '%') unary)*

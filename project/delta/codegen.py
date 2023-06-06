@@ -1,3 +1,4 @@
+# Author: A01749389 Omar Rodrigo Sorchini Puente
 from arpeggio import PTNodeVisitor
 
 
@@ -71,8 +72,9 @@ class CodeGenerationVisitor(PTNodeVisitor):
         return ''.join(children)
     
     def visit_do(self, node, children):
-        result = [children[0]]
-        result += ('    loop\n'
+        return ('    loop\n'
+                + children[0]
+                + children[1]
                 + '    br_if 0\n'
                 + '    end\n')
 
@@ -88,6 +90,24 @@ class CodeGenerationVisitor(PTNodeVisitor):
                 + '    end\n')
 
     def visit_expression(self, node, children):
+        if len(children) == 1:
+            return children[0]
+        
+        result = []
+
+        for exp in children[:-1]:
+            result.append(exp)
+            result.append('    if (result i32)\n')
+            result.append('    i32.const 1\n')
+            result.append(f'    else\n')
+
+        result.append(children[-1])
+        result.append('    i32.eqz\n'*2)
+        result.append('    end\n' * len(children[:-1]))
+        
+        return ''.join(result)
+    
+    def visit_and(self, node, children):
         if len(children) == 1:
             return children[0]
         result = [children[0]]

@@ -1,17 +1,8 @@
+# Author: A01749389 Omar Rodrigo Sorchini Puente
 from delta import Compiler, Phase
 
 
-source = '''
-var n, r, i;
-n = 5;
-r = 1;
-i = 0;
-do {
-    i = i + 1;
-    r = r * i;
-} while n - i;
-r
-'''
+source = '10 || 20 || 30'
 
 c = Compiler('program')
 c.realize(source, Phase.EVALUATION)
